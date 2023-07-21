@@ -36,12 +36,12 @@ app.all('*', (req, res) => {
 app.use(errorHandler)
 
 mongoose.connection.once('open', () => {
-    log('connected to MONGO DB')
-    app.listen(PORT, ()=>{
-        log(`'listening' on port ${PORT}`)
+    console.log('connected to MONGO DB')
+    app.listen(PORT, () => {
+        console.log(`'listening' on port ${PORT}`)
     })
 })
-mongoose.connection.on('error', () => {
+mongoose.connection.on('error', (err) => {
     log(err)
     logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
 })
